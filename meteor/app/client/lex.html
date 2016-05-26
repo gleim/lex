@@ -1,0 +1,58 @@
+<head>
+    <title>Lex the Library</title>
+</head>
+
+<body>
+    <h1>Welcome to Lex the Library</h1>
+
+    <h2>View content you have purchased</h2>
+
+    {{> view}}
+
+    <h2>Block Infos</h2>
+
+    {{> blockchainStatus}}
+
+
+    <h2>Latest publications to the contract</h2>
+
+    {{> publications}}
+
+
+    <h2>Latest payments to the contract</h2>
+
+    {{> deposits}}</body>
+
+
+
+<template name="blockchainStatus">
+    <pre>{{currentBlock}}</pre>
+</template>
+
+
+
+
+<template name="deposits">
+    {{#each deposits}}
+        <p>From: {{from}}</p>
+        <p>Value: {{value}}</p>
+        <p>Block: {{blockNumber}}</p>
+        ------------------
+    {{/each}}
+</template>
+
+
+
+<template name="view">
+    <input type="text">
+
+    {{#if TemplateVar.get "publish"}}
+        <button class="publish">Publish Content (costs money :)</button>
+    {{else}}
+        <button class="view">View Content</button>
+    {{/if}}
+
+    <br>
+    <a href="javascript:void(0);" class="switch">Switch functionality</a>
+    <br>
+</template>
