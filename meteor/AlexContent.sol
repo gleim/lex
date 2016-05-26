@@ -1,68 +1,37 @@
-contract mortal {
+contract AlexContent {
+	// internal variables
 	address owner;
-
-	// executed at initialization and sets the owner of the contract
-	function mortal() {
-	    owner = msg.sender;
-	}	
-
-	// recover the funds on the contract
-	function kill() {
-	    if (msg.sender == owner)
-	    	suicide(owner);
-	}	
-}
-
-contract AlexContent is mortal {
-	modifier onlyowner { if (msg.sender == owner) _ }
-
-	address owner;
-	string index;
-	string public name;
-	uint public price;
 	mapping (address => uint) amountPaid;
 	mapping (address => bool) paid;
 
-  	// log the events
-  	event ArtistPaid(address _from, uint _amount);
+	// public variables
+	string public name;
+	uint public price;
+
+  	// log the Publish events
+  	event Publish(address creator, string name, uint price);
   
-	function AlexContent() {
+  	// log the Deposit events
+  	event Deposit(address from, uint value);
+  
+  	// content creation must include a name, price is optional
+	function AlexContent(string _name, uint _price) {
 		owner = msg.sender;
-	}
-
-	function setIndex(string _index) onlyowner returns(bool success) {
-		index = _index;
-		return true;
-	}
-
-	function setName(string _name) onlyowner returns(bool success) {
 		name = _name;
-		return true;
+		price = _price; // zero if not provided
+		Publish(msg.sender, name, price);
 	}
 
-	function setPrice(uint _price) onlyowner returns(bool success) {
-		price = _price;
-		return true;
-	}
-
-	function getIndex() returns(string contentIndex) {
-		return index;
-	}
-
-	function setName() returns(string contentName) {
-		return name;
-	}
-
-	function setPrice() returns(uint contentPrice) {
-		return price;
-	}
-
-	function purchase() returns(bool success) {
-		if (msg.value < price) return false;
-		paid[msg.sender] = true;
-		ArtistPaid(msg.sender, msg.value);
-		return true;
-	}
+	// simplest transaction: someone makes a payment
+    function() {
+        if (msg.value > 0) {
+        	amountPaid[msg.sender] += msg.value;
+        	if (amountPaid[msg.sender] >= price) {
+        		paid[msg.sender] = true;
+        	}
+            Deposit(msg.sender, msg.value);
+        }
+    }
 
 	function contentPurchased() returns(bool purchased) {
 		if (paid[msg.sender]) 
