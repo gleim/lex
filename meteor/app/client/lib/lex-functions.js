@@ -31,7 +31,6 @@ AlexContentInstance.Publish({}).watch(function(e, log) {
     if(!e) {
         console.log('New content was published at block #'+ log.blockNumber);
         alert('New content was published at block #'+ log.blockNumber + ' Deposit to view!');
-        console.log('Money arrived! From:'+ log.args.from, log.args.value.toString(10));
 
         // add the transaction to our collection
         Publications.upsert('tx_'+ log.transactionHash ,{
