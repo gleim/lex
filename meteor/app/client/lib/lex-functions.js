@@ -30,13 +30,13 @@ AlexContentInstance.Deposit({},{fromBlock: 0, toBlock: 'latest'}).watch(function
 AlexContentInstance.Publish({}).watch(function(e, log) {
     if(!e) {
         console.log('New content was published at block #'+ log.blockNumber);
-        alert('New content was published at block #'+ log.blockNumber + ' Deposit to view!');
+        alert('New content ' + log.args.name + ' was published at block #'+ log.blockNumber + ' Deposit ' + log.args.price + ' to view!');
 
         // add the transaction to our collection
         Publications.upsert('tx_'+ log.transactionHash ,{
             creator: log.args.creator,
             name: log.args.name,
-            value: log.args.value.toString(10),
+            price: log.args.price.toString(10),
             blockNumber: log.blockNumber
         });
     }
