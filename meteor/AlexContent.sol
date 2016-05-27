@@ -14,7 +14,7 @@ contract AlexContent {
   	// log the Deposit events
   	event Deposit(address from, uint value);
   
-  	// content creation must include a name, price is optional
+  	// content creation
 	function AlexContent(string _name, uint _price) {
 		owner = msg.sender;
 		name = _name;
@@ -33,15 +33,8 @@ contract AlexContent {
         }
     }
 
-	function contentPurchased() returns(bool purchased) {
-		if (paid[msg.sender]) 
-			return true;
-		else
-			return false;
+	function contentPurchased() constant returns(bool purchased) {
+		return paid[msg.sender];
 	}
 
-	function view() returns(bool success) {
-		if (paid[msg.sender]) 
-			return true;
-	}
 }
