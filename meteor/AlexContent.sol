@@ -33,7 +33,11 @@ contract AlexContent {
         }
     }
 
-	function contentPurchased() constant returns(bool purchased) {
+    function publish() {
+		Publish(owner, name, price);
+    }
+
+	function purchased() constant returns(bool purchased) {
 		return paid[msg.sender];
 	}
 
