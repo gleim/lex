@@ -5,9 +5,9 @@ AlexContent = web3.eth.contract([{"constant":true,"inputs":[],"name":"name","out
 var contractInstance = AlexContent.new("square_b", 43, {from: web3.eth.accounts[0], gas: 500000, data: contractCode});
 // copy and paste resulting created address into at( ) below
 
-AlexContentInstance = AlexContent.at('0xc8b94455941d4e86876506985291742595d92a46');
+LexContentInstance = AlexContent.at('0xc8b94455941d4e86876506985291742595d92a46');
 
-AlexContentInstance.address;
+LexContentInstance.address;
 
 /*
 
