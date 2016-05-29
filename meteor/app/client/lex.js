@@ -30,15 +30,24 @@ Template['publications'].helpers({
 
 
 Template['view'].events({
-    'click button.guess': function (e, template) {
+    'click button.view': function (e, template) {
+        alert(template.find('input').value +' is attempting to view '+ LexContentInstance.purchased({from: template.find('input').value, gas: 50000}));
+        template.find('input').value = '';
+    },
+}); 
+
+Template['pay'].events({
+    'click button.pay': function (e, template) {
         alert(template.find('input').value +' is '+ LexContentInstance.view(template.find('input').value));
         template.find('input').value = '';
     },
-    'click button.set': function (e, template) {
-        LexContentInstance.publish(template.find('input').value, {from: web3.eth.accounts[0], gas: 50000});
+}); 
+
+Template['publish'].events({
+    'click button.publish': function (e, template) {
+        LexContentInstance.publish(template.find('input').value, 
+                                   {from: web3.eth.accounts[0], gas: 50000}
+        );
         template.find('input').value = '';
     },
-    'click a.switch': function (e, template) {
-        TemplateVar.set('publications', !TemplateVar.get('publications'));
-    }
 });

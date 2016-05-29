@@ -9,6 +9,14 @@
 
     {{> view}}
 
+    <h2>Publish content you have created</h2>
+
+    {{> publish}}
+
+    <h2>Pay to purchase new content</h2>
+
+    {{> pay}}
+
     <h2>Block Infos</h2>
 
     {{> blockchainStatus}}
@@ -53,16 +61,19 @@
 </template>
 
 
+<template name="publish">
+    <input type="text">
+    <button class="publish">Publish Content (costs money :)</button>
+</template>
+
+
+<template name="pay">
+    <input type="text">
+    <button class="deposit">Deposit</button>
+</template>
+
+
 <template name="view">
     <input type="text">
-
-    {{#if TemplateVar.get "publish"}}
-        <button class="publish">Publish Content (costs money :)</button>
-    {{else}}
-        <button class="view">View Content</button>
-    {{/if}}
-
-    <br>
-    <a href="javascript:void(0);" class="switch">Switch functionality</a>
-    <br>
+    <button class="view">View</button>
 </template>
