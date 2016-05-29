@@ -31,12 +31,12 @@ Template['publications'].helpers({
 
 Template['view'].events({
     'click button.view': function (e, template) {
-        alert(template.find('input').value +' is attempting to view '+ LexContentInstance.purchased({from: template.find('input').value, gas: 50000}));
+        alert(template.find('input').value +' is attempting to view content.  \nPurchased = '+ LexContentInstance.purchased.call({from: template.find('input').value, gas: 50000}));
 
+        if (LexContentInstance.purchased.call({from: template.find('input').value, gas: 50000}) == true)
         // this will download the file in absence of an appropriate browser plugin
-        window.open('http://localhost:8080/ipfs/QmTca4A43f4kEvzTouvYTegtp6KobixRqweV12NrvwwtFP'
-        );
-   
+            window.open('http://localhost:8080/ipfs/QmTca4A43f4kEvzTouvYTegtp6KobixRqweV12NrvwwtFP');
+
         template.find('input').value = '';
     },
 }); 
