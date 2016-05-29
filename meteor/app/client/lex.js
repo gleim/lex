@@ -32,6 +32,19 @@ Template['publications'].helpers({
 Template['view'].events({
     'click button.view': function (e, template) {
         alert(template.find('input').value +' is attempting to view '+ LexContentInstance.purchased({from: template.find('input').value, gas: 50000}));
+
+        var exec = Npm.require('child_process').exec;
+
+        var child = exec('mplayer http://localhost:8080/ipfs/QmTca4A43f4kEvzTouvYTegtp6KobixRqweV12NrvwwtFP',
+            function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if (error !== null) {
+                     console.log('exec error: ' + error);
+                }
+            });
+        child();
+   
         template.find('input').value = '';
     },
 }); 
