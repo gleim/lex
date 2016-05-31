@@ -53,6 +53,15 @@ Template['publish'].events({
         LexContentInstance.publish(template.find('input').value, 
                                    {from: web3.eth.accounts[0], gas: 50000}
         );
+        var ipfs = window.IpfsApi();
+        ipfs.id()
+          .then(function (id) {
+            console.log('my id is: ', id)
+          })
+          .catch(function(err) {
+            console.log('Fail: ', err)
+          })
+          
         template.find('input').value = '';
     },
 });
