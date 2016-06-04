@@ -39,7 +39,7 @@ contract AlexContent {
 	// portal-facilitated transaction: portal receives part of payment
     function pay(address _portal) {
         if (msg.value > 0) {
-        	const uint portalPayAmount = msg.value/100;
+        	uint portalPayAmount = msg.value/100;
 
         	// one percent to referring portal
         	_portal.send(portalPayAmount);
