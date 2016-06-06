@@ -14,9 +14,6 @@ contract AlexContent {
   	// log the Deposit events
   	event Deposit(address from, uint value);
   
-  	// log the PortalPaid events
-  	event PortalPaid(address portal, uint value);
-  
   	// content creation
 	function AlexContent(string _name, uint _price) {
 		owner = msg.sender;
@@ -32,27 +29,6 @@ contract AlexContent {
         	if (amountPaid[msg.sender] >= price) {
         		paid[msg.sender] = true;
         	}
-            Deposit(msg.sender, msg.value);
-        }
-    }
-
-	// portal-facilitated transaction: portal receives part of payment
-    function pay(address _portal) {
-        if (msg.value > 0) {
-        	uint portalPayAmount = msg.value/100;
-
-        	// one percent to referring portal
-        	_portal.send(portalPayAmount);
-
-        	// send notification portal has been paid
-        	PortalPaid(_portal, portalPayAmount);
-
-        	amountPaid[msg.sender] += msg.value;
-        	if (amountPaid[msg.sender] >= price) {
-        		paid[msg.sender] = true;
-        	}
-
-        	// send notification deposit is complete
             Deposit(msg.sender, msg.value);
         }
     }

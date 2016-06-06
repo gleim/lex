@@ -2,7 +2,7 @@ contractCode = '6060604052604051610658380380610658833981016040528080518201919060
 
 AlexContent = web3.eth.contract([{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"type":"function"},{"constant":false,"inputs":[],"name":"publish","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"purchased","outputs":[{"name":"purchased","type":"bool"}],"type":"function"},{"constant":true,"inputs":[],"name":"price","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"inputs":[{"name":"_name","type":"string"},{"name":"_price","type":"uint256"}],"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"creator","type":"address"},{"indexed":false,"name":"name","type":"string"},{"indexed":false,"name":"price","type":"uint256"}],"name":"Publish","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Deposit","type":"event"}]);
 
-var contractInstance = AlexContent.new("square_b", 43, {from: web3.eth.accounts[0], gas: 500000, data: contractCode});
+contractInstance = AlexContent.new("square_c", 44, {from: web3.eth.accounts[0], gas: 500000, data: contractCode});
 // copy and paste resulting created address into at( ) below
 
 LexContentInstance = AlexContent.at('0xc8b94455941d4e86876506985291742595d92a46');
