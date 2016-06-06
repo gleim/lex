@@ -9,17 +9,17 @@ contract AlexContent {
 	uint public price;
 
   	// log the Publish events
-  	event Publish(address creator, string name, uint price);
+  	event LexPublish(address creator, string name, uint price);
   
   	// log the Deposit events
-  	event Deposit(address from, uint value);
+  	event LexDeposit(address from, uint value);
   
   	// content creation
 	function AlexContent(string _name, uint _price) {
 		owner = msg.sender;
 		name = _name;
 		price = _price; // zero if not provided
-		Publish(msg.sender, name, price);
+		LexPublish(msg.sender, name, price);
 	}
 
 	// simplest transaction: someone makes a payment
@@ -29,12 +29,12 @@ contract AlexContent {
         	if (amountPaid[msg.sender] >= price) {
         		paid[msg.sender] = true;
         	}
-            Deposit(msg.sender, msg.value);
+            LexDeposit(msg.sender, msg.value);
         }
     }
 
     function publish() {
-		Publish(owner, name, price);
+		LexPublish(owner, name, price);
     }
 
 	function purchased() constant returns(bool purchased) {
