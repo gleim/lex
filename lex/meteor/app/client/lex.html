@@ -1,0 +1,81 @@
+<head>
+    <title>Alexandria Ethereum Paywall</title>
+    <script src="https://npmcdn.com/ipfs-api/dist/index.js"></script>
+</head>
+
+<body>
+    <h1>Alexandria Ethereum Paywall</h1>
+
+    <h2>View content you have purchased</h2>
+
+    {{> view}}
+
+    <h2>Publish content you have created</h2>
+
+    {{> publish}}
+
+    <h2>Pay to purchase new content</h2>
+
+    {{> pay}}
+
+    <h2>Block Infos</h2>
+
+    {{> blockchainStatus}}
+
+
+    <h2>Latest publications to the contract</h2>
+
+    {{> publications}}
+
+
+    <h2>Latest payments to the contract</h2>
+
+    {{> deposits}}</body>
+
+
+
+<template name="blockchainStatus">
+    <pre>{{currentBlock}}</pre>
+</template>
+
+
+
+
+<template name="deposits">
+    {{#each deposits}}
+        <p>From: {{from}}</p>
+        <p>Value: {{value}}</p>
+        <p>Block: {{blockNumber}}</p>
+        ------------------
+    {{/each}}
+</template>
+
+
+<template name="publications">
+    {{#each publications}}
+        <p>Creator: {{creator}}</p>
+        <p>Name: {{name}}</p>
+        <p>Price: {{price}}</p>
+        <p>Block: {{blockNumber}}</p>
+        ------------------
+    {{/each}}
+</template>
+
+
+<template name="publish">
+    <input type="text">
+    <button class="publish">Publish Content (costs money :)</button>
+</template>
+
+
+<template name="pay">
+    <input type="text">
+    <button class="deposit">Deposit</button>
+</template>
+
+
+<template name="view">
+    <input type="text">
+    <button class="view">View</button>
+</template>
+
