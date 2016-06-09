@@ -5,6 +5,9 @@ contract ArtFactory {
   // one piece of art per address
   mapping (address => uint) publicationPrice;
 
+  // track published pieces
+  mapping (address => bool) published;
+
   // any piece of art can be purchased by anyone
   struct Purchases { mapping(address => uint) paid; }
   
@@ -29,11 +32,14 @@ contract ArtFactory {
 
   function publish() {
     publicationPrice[msg.sender] = msg.value;
+    published[msg.sender] = true;
 	Publish(msg.sender, msg.value);
   }
 
   // portal-facilitated transaction: portal receives part of payment
   function pay(address recipient, address portal) {
+    if (!published[recipient]) throw;
+
     if (msg.value > 0) {
     	uint portalPayAmount = msg.value/100;
 
@@ -61,7 +67,7 @@ contract ArtFactory {
     // extract purchases for the artist
 	Purchases purchases = amountsPaid[art];
 	
-	if (purchases.paid[msg.sender] >= publicationPrice[art]) {
+	if (published[art] && (purchases.paid[msg.sender] >= publicationPrice[art])) {
 	    return true;
 	}
 	return false;
