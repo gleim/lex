@@ -50,9 +50,11 @@ Template['pay'].events({
 
 Template['publish'].events({
     'click button.publish': function (e, template) {
+
         console.log("FORM INPUT: " + template.find('input').value);
+
         LexContentInstance.publish(template.find('input').value, 
-                                   {from: web3.eth.accounts[0], gas: 500000}
+                                   {from: web3.eth.accounts[0], gas: 50000}
         );
         var ipfs = window.IpfsApi();
         ipfs.id()
