@@ -9,9 +9,11 @@ web3.eth.filter('latest').watch(function(e, blockHash) {
 
 
 
+/* move to Artist DApp
+
 // Check if money arrived
 // Note checking from block 0 is very unperformant!
-ArtFactory.Deposit({},{fromBlock: 0, toBlock: 'latest'}).watch(function(e, log) {
+Art.Deposit({},{fromBlock: 0, toBlock: 'latest'}).watch(function(e, log) {
     if(!e) {
         console.log('Money arrived! From:'+ log.args.from, log.args.value.toString(10));
 
@@ -24,6 +26,7 @@ ArtFactory.Deposit({},{fromBlock: 0, toBlock: 'latest'}).watch(function(e, log) 
     }
 });
 
+*/
 
 
 // Check if somebody set a number
