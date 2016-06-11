@@ -12,19 +12,48 @@ var ArtFactoryContractInstance = ArtFactoryContract.new({from: web3.eth.accounts
 ArtFactory = ArtFactoryContract.at('0xad17b2216138bde883b16c590285fad1e2259080');
 //ArtFactory.address;
 
-ArtContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"viewBalance","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"view","outputs":[{"name":"","type":"bool"}],"type":"function"},{"inputs":[{"name":"_artist","type":"address"},{"name":"_price","type":"uint256"}],"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Deposit","type":"event"}]);
+/*
+
+// ^-- send ether directly to ArtFactory from wallet to create ArtContract instance,
+// view publication via Events published to DApp UI
+
+// test scenario - nominal
+// roles:
+
+// web3.eth address			role 				hex address
+
+// accounts[0] 				factory owner	
+// accounts[1] 				artist
+// accounts[2]				purchaser/viewer
+
+// a. validate art creation (via publish Event consumption)
+// b. validate cannot be viewed without purchase
+// c. purchase
+// d. validate can be viewed after purchase
+// e. validate artist withdraws funds
+
+// end.
+
+*/
+
+//ArtContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"viewBalance","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"view","outputs":[{"name":"","type":"bool"}],"type":"function"},{"inputs":[{"name":"_artist","type":"address"},{"name":"_price","type":"uint256"}],"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Deposit","type":"event"}]);
 // ^-- copy and paste resulting created address into at( ) below
+
 
 //Art = ArtContract.at('0x1d73a07c1e4bb45f475cbe225c64c64d82f4cda1');
 //Art.address;
 
-var pendingTxHash_0x01 = ArtFactory.publish("SampleVideo_0x01.mp4", 5000, {from: web3.eth.accounts[1], gas: 500000});
+// obsoleted
+////var pendingTxHash_0x01 = ArtFactory.publish("SampleVideo_0x01.mp4", 5000, {from: web3.eth.accounts[1], gas: 500000});
+
 // ^-- copy and paste resulting created hash into [http://testnet.etherscan.io/tx/ ] to retrieve 0x01 contract hash
 
 //Art_0x01 = ArtContract.at('0xf74db1aaa0b0c308a29a02f4becdc82eddaf40b8');
 //Art_0x01.address;
 
-var pendingTxHash_0x02 = ArtFactory.publish("SampleVideo_0x02.mp4", 10000, {from: web3.eth.accounts[2], gas: 500000});
+// obsoleted
+////var pendingTxHash_0x02 = ArtFactory.publish("SampleVideo_0x02.mp4", 10000, {from: web3.eth.accounts[2], gas: 500000});
+
 // ^-- copy and paste resulting created hash into [http://testnet.etherscan.io/tx/ ] to retrieve 0x02 contract hash
 
 //Art_0x02 = ArtContract.at('0xf74db1aaa0b0c308a29a02f4becdc82eddaf40b8');
