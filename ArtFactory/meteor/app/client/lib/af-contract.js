@@ -12,6 +12,7 @@ var ArtFactoryContractInstance = ArtFactoryContract.new({from: web3.eth.accounts
 ArtFactory = ArtFactoryContract.at('0xad17b2216138bde883b16c590285fad1e2259080');
 //ArtFactory.address;
 
+
 /*
 
 // ^-- send ether directly to ArtFactory from wallet to create ArtContract instance,
@@ -24,16 +25,23 @@ ArtFactory = ArtFactoryContract.at('0xad17b2216138bde883b16c590285fad1e2259080')
 
 // accounts[0] 				factory owner	
 // accounts[1] 				artist
-// accounts[2]				purchaser/viewer
+// accounts[2]				consumer
 
-// a. validate art creation (via publish Event consumption)
-// b. validate cannot be viewed without purchase
-// c. purchase
-// d. validate can be viewed after purchase
-// e. validate artist withdraws funds
+// 1. verify in JS
+//    2. adapt HTML to serve JS
+// x     a. validate art creation (via publish Event consumption)
+//       b. validate cannot be viewed without purchase
+// x     c. purchase (direct via consumer wallet)
+//       d. validate can be viewed after purchase
+//       e. validate artist withdraws funds
 
 // end.
 
+*/
+
+/*
+Art = ArtContract.at('');
+Art.purchased({from: web3.eth.accounts[2], gas: 500000})
 */
 
 //ArtContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"viewBalance","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"view","outputs":[{"name":"","type":"bool"}],"type":"function"},{"inputs":[{"name":"_artist","type":"address"},{"name":"_price","type":"uint256"}],"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Deposit","type":"event"}]);

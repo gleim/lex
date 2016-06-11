@@ -33,12 +33,11 @@ Art.Deposit({},{fromBlock: 0, toBlock: 'latest'}).watch(function(e, log) {
 ArtFactory.Publish({}).watch(function(e, log) {
     if(!e) {
         console.log('New content was published at block #'+ log.blockNumber);
-        alert('New content ' + log.args.name + ' was published at block #'+ log.blockNumber + ' Deposit ' + log.args.price + ' to view!');
+        alert('New content ' + log.args.art + ' was published at block #'+ log.blockNumber + ' Deposit ' + log.args.price + ' to view!');
 
         // add the transaction to our collection
         Publications.upsert('tx_'+ log.transactionHash ,{
-            creator: log.args.creator,
-            name: log.args.name,
+            creator: log.args.art,
             price: log.args.price.toString(10),
             blockNumber: log.blockNumber
         });
